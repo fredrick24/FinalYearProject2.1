@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.media.MediaActionSound;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -119,9 +117,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void setupUIViews(){
        userName=(EditText)findViewById(R.id.etUserName);
-       userPassword =(EditText)findViewById(R.id.etPassword);
+       userPassword =(EditText)findViewById(R.id.etUserPassword);
         userEmail=(EditText)findViewById(R.id.etEmail);
-        regButton=(Button)findViewById(R.id.btnLogin);
+        regButton=(Button)findViewById(R.id.btnRegister);
         userLogin=(TextView)findViewById(R.id.tvUserLogin);
         userProfilePic=(ImageView)findViewById(R.id.ivProfile);
     }

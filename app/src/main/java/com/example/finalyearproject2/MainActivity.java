@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Name = (EditText)findViewById(R.id.etName);
-        Password = (EditText)findViewById(R.id.etPassword);
+        Password = (EditText)findViewById(R.id.etUserPassword);
         Info = (TextView)findViewById(R.id.tvInfo);
         Login =(Button)findViewById(R.id.btnLogin);
         userRegistration =(TextView)findViewById(R.id.tvRegister);

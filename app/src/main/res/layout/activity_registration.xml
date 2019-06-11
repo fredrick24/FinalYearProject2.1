@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.413" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etUserPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
         app:layout_constraintVertical_bias="0.214" />
 
     <TextView
@@ -102,7 +102,7 @@
     <ImageView
         android:id="@+id/ivProfile"
         android:layout_width="177dp"
-        android:layout_height="153"
+        android:layout_height="153dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
