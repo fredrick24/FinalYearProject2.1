@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        System.out.println("The current user is: " + user);
         //Doesn't prompt user to enter credentials again:
        if(user != null){
            finish();

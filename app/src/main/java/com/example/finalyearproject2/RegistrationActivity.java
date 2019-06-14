@@ -131,7 +131,7 @@ public class RegistrationActivity extends AppCompatActivity {
              password =userPassword.getText().toString();
              email=userEmail.getText().toString();
 
-            if((name.isEmpty()) || (email.isEmpty()) || password.isEmpty() || imagePath == null){
+            if((name.isEmpty()) || (email.isEmpty()) || password.isEmpty()){
                 Toast.makeText(this,"Please enter the required fields", Toast.LENGTH_SHORT).show();
             }else{
                 result=true;
