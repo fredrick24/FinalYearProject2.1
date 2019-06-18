@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -54,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
 
         StorageReference storageReference = firebaseStorage.getReference();
-        storageReference.child(firebaseAuth.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageReference.child(firebaseAuth.getUid()).child("Images/Profile Picture").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 //Retrieving URI
@@ -67,8 +66,10 @@ public class ProfileActivity extends AppCompatActivity {
             //Records any changes on database:
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-            profileName.setText("Name "+userProfile.getUserName());
-            profileEmail.setText("Email: "+userProfile.getUserEmail());
+                profileEmail.setText("Email: "+userProfile.getUserEmail());
+                profileName.setText("Name: "+userProfile.getUserName());
+
+
 
             }
 
