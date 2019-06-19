@@ -131,7 +131,7 @@ public class RegistrationActivity extends AppCompatActivity {
              password =userPassword.getText().toString();
              email=userEmail.getText().toString();
 
-            if((name.isEmpty()) || (email.isEmpty()) || password.isEmpty()){
+            if((name.isEmpty()) || (email.isEmpty()) || password.isEmpty() || imagePath == null ){
                 Toast.makeText(this,"Please enter the required fields", Toast.LENGTH_SHORT).show();
             }else{
                 result=true;
@@ -177,7 +177,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             });
             UserProfile userProfile = new UserProfile(email,name);
-            myRef.setValue( userProfile);
+            myRef.setValue(userProfile);
         }
 
 }
