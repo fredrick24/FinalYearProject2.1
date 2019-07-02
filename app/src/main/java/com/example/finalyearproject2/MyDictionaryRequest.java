@@ -2,6 +2,8 @@ package com.example.finalyearproject2;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,34 +12,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-
 import javax.net.ssl.HttpsURLConnection;
 
 
     public class MyDictionaryRequest extends AsyncTask<String,Integer,String> {
 
 
-    final String app_id = "05fb067e";
-    final String app_key = "e5bdc5be07010d4d6c99802a7b5448d6";
-        private final Object TextView;
-        String myurl;
-    Context context;
-    private TextView D1;
 
-        MyDictionaryRequest(Context context,TextView D1){
+        String myurl;
+        Context context;
+        private TextView D1;
+
+        MyDictionaryRequest(Context context,TextView showDef){
      this.context = context;
-    TextView = D1;
+     D1 = showDef;
 
  }
 
 
     @Override
     protected String doInBackground(String... params) {
-
+        final String app_id = "05fb067e";
+        final String app_key = "e5bdc5be07010d4d6c99802a7b5448d6";
         myurl = params[0];
         String result;
         try {
@@ -57,24 +56,22 @@ import javax.net.ssl.HttpsURLConnection;
                 stringBuilder.append(line + "\n");
             }
 
-            result = stringBuilder.toString();
+           return stringBuilder.toString();
 
         }
         catch (Exception e) {
             e.printStackTrace();
             return e.toString();
         }
-        
-        return result;
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
 
         String def;
         try {
-            JSONObject js = new JSONObject(s);
+            JSONObject js = new JSONObject(result);
             JSONArray results = js.getJSONArray("results");
 
             JSONObject lEntries = results.getJSONObject(0);
@@ -86,17 +83,17 @@ import javax.net.ssl.HttpsURLConnection;
             JSONObject jsonObject = e.getJSONObject(0);
             JSONArray sensesArray = jsonObject.getJSONArray("senses");
 
-            JSONObject d = sensesArray.getJSONObject(0);
-            JSONArray de = d.getJSONArray("definitions");
+            JSONObject de = sensesArray.getJSONObject(0);
+            JSONArray d = de.getJSONArray("definitions");
 
-           def = de.getString(0);
+        def = d.getString(0);
+        D1.setText(def);
 
-
-           Toast.makeText(context,def,Toast.LENGTH_SHORT).show();
 
         }catch (JSONException e)
         {
             e.printStackTrace();
         }
+        Log.v("Result of Dictionary","onPostExecute" + result);
     }
 }
