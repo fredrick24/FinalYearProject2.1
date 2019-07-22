@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,10 +30,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView profilePicture;
     private TextView profileName,profileEmail;
-    private Button profileUpdate,changePassword;
+    private ImageView profileUpdate,changePassword;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseStorage firebaseStorage;
+    private Animation atg,atgtwo,atgthree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,12 @@ public class ProfileActivity extends AppCompatActivity {
         profilePicture =(ImageView)findViewById(R.id.ivProfilePic);
         profileEmail =(TextView)findViewById(R.id.tvProfileEmail);
         profileName=(TextView)findViewById(R.id.tvProfileName);
-        profileUpdate=(Button)findViewById(R.id.btnProfileUpdate);
-        changePassword=(Button)findViewById(R.id.btnChangePassword);
+        profileUpdate=(ImageView) findViewById(R.id.btnProfileUpdate);
+        changePassword=(ImageView) findViewById(R.id.btnChangePassword);
+
+        atg = AnimationUtils.loadAnimation(this, R.anim.atg);
+        atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
+        atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -92,6 +99,14 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this,UpdatePassword.class));
             }
         });
+
+        //Pass Animations:
+
+        profilePicture.startAnimation(atg);
+        profileEmail.startAnimation(atgtwo);
+        profileName.startAnimation(atgtwo);
+        profileUpdate.startAnimation(atgtwo);
+        changePassword.startAnimation(atgthree);
     }
 
     @Override

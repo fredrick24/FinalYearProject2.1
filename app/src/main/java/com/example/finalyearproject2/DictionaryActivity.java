@@ -2,10 +2,14 @@ package com.example.finalyearproject2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.speech.tts.TextToSpeech;
 import android.widget.Toast;
@@ -18,8 +22,10 @@ public class DictionaryActivity extends AppCompatActivity {
 
     private EditText edit1;
     private TextView D1;
-    private Button define,btnTTS;
+    private Button define;
     private TextToSpeech tts1;
+    private ImageView btnTTS;
+    private Animation atg,atgtwo,atgthree;
     String url;
 
 
@@ -30,10 +36,14 @@ public class DictionaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
 
+        atg = AnimationUtils.loadAnimation(this, R.anim.atg);
+        atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
+        atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
+
         edit1 = (EditText) findViewById(R.id.etWord);
         D1 = (TextView) findViewById(R.id.tvDefine);
         define = (Button) findViewById(R.id.btnDefine);
-        btnTTS = (Button) findViewById(R.id.btnTTS);
+        btnTTS = (ImageView) findViewById(R.id.btnTTS);
 
         tts1 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -52,6 +62,12 @@ public class DictionaryActivity extends AppCompatActivity {
                 tts1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
+
+        //Animations
+        edit1.startAnimation(atg);
+        D1.startAnimation(atg);
+        define.startAnimation(atgtwo);
+        btnTTS.startAnimation(atgthree);
     }
 
         public void onPause(){

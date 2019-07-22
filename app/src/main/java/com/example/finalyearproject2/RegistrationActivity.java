@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private static int PICK_IMAGE =123;
     Uri imagePath;
     private StorageReference storageReference;
+    private Animation atg,atgtwo,atgthree;
 
 
     @Override
@@ -66,6 +69,9 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         setupUIViews();
+        atg = AnimationUtils.loadAnimation(this, R.anim.atg);
+        atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
+        atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
@@ -113,6 +119,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });
+
+        //Animations
+        userName.startAnimation(atg);
+        userPassword.startAnimation(atg);
+        userEmail.startAnimation(atg);
+        regButton.startAnimation(atgtwo);
+        userLogin.startAnimation(atgthree);
+        userProfilePic.startAnimation(atg);
     }
 
     private void setupUIViews(){

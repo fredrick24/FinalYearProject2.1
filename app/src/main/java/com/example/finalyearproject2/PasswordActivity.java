@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,12 +21,18 @@ public class PasswordActivity extends AppCompatActivity {
     private EditText passwordEmail;
     private Button resetPassword;
     private FirebaseAuth firebaseAuth;
+    private Animation atg,atgtwo,atgthree;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
+
+        atg = AnimationUtils.loadAnimation(this, R.anim.atg);
+        atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
+        atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
 
         passwordEmail = (EditText)findViewById(R.id.etPasswordEmail);
         resetPassword = (Button)findViewById(R.id.btnPasswordReset);
@@ -53,6 +61,11 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Animations
+        passwordEmail.startAnimation(atg);
+        resetPassword.startAnimation(atgtwo);
+
     }
 
 }
