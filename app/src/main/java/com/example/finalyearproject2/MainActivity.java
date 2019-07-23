@@ -102,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
             resultTask.addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    Toast.makeText(MainActivity.this, "Signing in as Anonymous", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(MainActivity.this, "Signed in as Anonymous", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,SecondActivity.class));
                 }
             });
-            startActivity(new Intent(MainActivity.this,SecondActivity.class));
+
         }
     });
 

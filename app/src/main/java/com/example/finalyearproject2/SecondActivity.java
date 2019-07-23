@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,24 +39,23 @@ import com.squareup.picasso.Picasso;
 public class SecondActivity extends AppCompatActivity {
 
     private ImageView Dict;
-   private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseStorage firebaseStorage;
-    private Animation atg,atgtwo,atgthree;
+    private Animation atg, atgtwo, atgthree;
 
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ImageView profilePicture2;
+    private TextView profileEmail2, profileName2;
 
-
-   private FirebaseAuth firebaseAuth;
-   private FirebaseUser firebaseUser;
-   private ImageView profilePicture2;
-   private TextView profileEmail2,profileName2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        profilePicture2 =(ImageView)findViewById(R.id.ivProfilePic2);
-        profileEmail2 =(TextView)findViewById(R.id.tvProfileEmail2);
-        profileName2=(TextView)findViewById(R.id.tvProfileName2);
+        profilePicture2 = (ImageView) findViewById(R.id.ivProfilePic2);
+        profileEmail2 = (TextView) findViewById(R.id.tvProfileEmail2);
+        profileName2 = (TextView) findViewById(R.id.tvProfileName2);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
@@ -66,58 +66,58 @@ public class SecondActivity extends AppCompatActivity {
         mAuth = firebaseAuth.getInstance();
 
 
-        //Get Database Storage Reference from Firebase
-        firebaseAuth =  FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
+            //Get Database Storage Reference from Firebase
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseStorage = FirebaseStorage.getInstance();
 
-        //Opens Up Dictionary Function
-        Dict = (ImageView)findViewById(R.id.btnDictionary);
-        Dict.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SecondActivity.this,DictionaryActivity.class));
-            }
-        });
-
-        //Animation
-        Dict.startAnimation(atgtwo);
-
-    }
-
-    //links Menu Layout
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.logoutMenu: {
-                firebaseAuth.signOut();
-                finish();
-                startActivity(new Intent(SecondActivity.this, MainActivity.class));
-
-            }
-            case R.id.profileMenu: {
-                 {
-                    startActivity(new Intent(SecondActivity.this, ProfileActivity.class));
+            //Opens Up Dictionary Function
+            Dict = (ImageView) findViewById(R.id.btnDictionary);
+            Dict.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(SecondActivity.this, DictionaryActivity.class));
                 }
-            }
+            });
+
+            //Animation
+            Dict.startAnimation(atgtwo);
 
         }
-        return super.onOptionsItemSelected(item);
+
+        //links Menu Layout
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            getMenuInflater().inflate(R.menu.menu, menu);
+            return true;
+
+        }
+
+        @Override
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+
+            switch (item.getItemId()) {
+                case R.id.logoutMenu: {
+                    Logout();
+                }
+                case R.id.profileMenu: {
+                    {
+                        startActivity(new Intent(SecondActivity.this, ProfileActivity.class));
+                    }
+                }
+
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
+        private void Logout () {
+            mAuth.signOut();
+            startActivity(new Intent(SecondActivity.this, MainActivity.class));
+            finish();
+        }
+
+
     }
 
 
-
-
-
-
-
-}
 

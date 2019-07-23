@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,12 +35,14 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseStorage firebaseStorage;
+    private FirebaseAuth mAuth;
     private Animation atg,atgtwo,atgthree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        mAuth.getInstance();
 
         profilePicture =(ImageView)findViewById(R.id.ivProfilePic);
         profileEmail =(TextView)findViewById(R.id.tvProfileEmail);
@@ -53,38 +56,36 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        firebaseAuth =FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-
-        StorageReference storageReference = firebaseStorage.getReference();
-        storageReference.child(firebaseAuth.getUid()).child("Images/Profile Picture").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                //Retrieving URI
-                Picasso.get().load(uri).fit().centerCrop().into(profilePicture);
-            }
-        });
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            //Records any changes on database:
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                profileEmail.setText("Email: "+userProfile.getUserEmail());
-                profileName.setText("Name: "+userProfile.getUserName());
 
 
+             firebaseAuth =FirebaseAuth.getInstance();
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseStorage = FirebaseStorage.getInstance();
+            DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+            StorageReference storageReference = firebaseStorage.getReference();
+            storageReference.child(firebaseAuth.getUid()).child("Images/Profile Picture").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    //Retrieving URI
+                    Picasso.get().load(uri).fit().centerCrop().into(profilePicture);
+                }
+            });
 
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(ProfileActivity.this,databaseError.getCode(),Toast.LENGTH_SHORT).show();
-            }
-        });
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                //Records any changes on database:
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
+                    profileEmail.setText("Email: " + userProfile.getUserEmail());
+                    profileName.setText("Username: " + userProfile.getUserName());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(ProfileActivity.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
         profileUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
