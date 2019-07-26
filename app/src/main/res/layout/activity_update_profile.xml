@@ -6,23 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".UpdateProfile">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="412dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bgheader"
+        app:layout_constraintBottom_toTopOf="@+id/etEmailUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
         android:id="@+id/ivProfileUpdate"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="132dp"
+        android:layout_height="129dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:src="@drawable/profileicon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        app:srcCompat="@mipmap/ic_launcher_foreground" />
+        app:layout_constraintVertical_bias="0.099" />
 
     <EditText
         android:id="@+id/etEmailUpdate"

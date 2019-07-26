@@ -47,15 +47,12 @@ public class SecondActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private ImageView profilePicture2;
-    private TextView profileEmail2, profileName2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        profilePicture2 = (ImageView) findViewById(R.id.ivProfilePic2);
-        profileEmail2 = (TextView) findViewById(R.id.tvProfileEmail2);
-        profileName2 = (TextView) findViewById(R.id.tvProfileName2);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 

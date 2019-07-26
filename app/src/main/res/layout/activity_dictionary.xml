@@ -57,22 +57,28 @@
 
 
     <LinearLayout
-        android:layout_width="415dp"
-        android:layout_height="395dp"
+        android:layout_width="364dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bgmenus"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.906">
+        app:layout_constraintVertical_bias="0.02">
 
 
         <TextView
             android:id="@+id/tvDefine"
-            android:layout_width="389dp"
-            android:layout_height="205dp"
+            android:layout_width="335dp"
+            android:layout_height="167dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
