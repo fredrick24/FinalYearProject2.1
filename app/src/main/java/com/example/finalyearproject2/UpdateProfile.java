@@ -67,6 +67,9 @@ public class UpdateProfile extends AppCompatActivity {
         newUserName=(EditText)findViewById(R.id.etNameUpdate);
         save =(Button)findViewById(R.id.btnSave);
         updateProfilePic =(ImageView)findViewById(R.id.ivProfileUpdate);
+        newUserEmail.setEnabled(false);
+
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -83,8 +86,9 @@ public class UpdateProfile extends AppCompatActivity {
             //Records any changes on database:
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                newUserEmail.setText(userProfile.getUserEmail());
+               newUserEmail.setText(userProfile.getUserEmail());
                 newUserName.setText(userProfile.getUserName());
+
 
             }
 
@@ -106,7 +110,8 @@ public class UpdateProfile extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email =newUserEmail.getText().toString();
+
+                String email = newUserEmail.getText().toString();
                 String name = newUserName.getText().toString();
 
                 UserProfile userProfile = new UserProfile(email,name);

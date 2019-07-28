@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
                 //Records any changes on database:
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                    profileEmail.setText("Email: " + userProfile.getUserEmail());
+                    profileEmail.setText("UserEmail: " + userProfile.getUserEmail());
                     profileName.setText("Username: " + userProfile.getUserName());
                 }
 
